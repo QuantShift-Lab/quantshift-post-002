@@ -50,7 +50,10 @@ So if the stock crashes? Your put gets more valuable. If the stock holds strong?
 ---
 
 In Python, we can express both payoffs using NumPy like this:
-
+```python
+call_payoff = np.maximum(S - K, 0)
+put_payoff = np.maximum(K - S, 0)
+```
 
 
 ## So... What Happens When We Look at the Slope?
@@ -70,6 +73,14 @@ Sounds simple enough, right? But what we’re really asking is:
 That’s where this gets fun — because we can use basic calculus to uncover the **behavioral turning point** baked into every option contract.
 
 Let’s start by modeling those slopes.
+
+```python
+# Slope of the call payoff
+call_slope = np.where(S < K, 0, 1)
+
+# Slope of the put payoff
+put_slope = np.where(S < K, -1, 0)
+```
 
 
 ## What These Slopes Actually Tell Us
